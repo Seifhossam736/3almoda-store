@@ -312,11 +312,11 @@ width: 100%;
 
 <div id="tshirts" class="section">
   <div class="product">
-    <img src="h.jpg" alt="off white T-Shirt">
+    <img src="h.jpeg" alt="off white T-Shirt">
     
   <p>off white T-shirt</p>
     <p>300LE</p>
-    <button onclick="addToCart('h.jpg')">Add to Cart</button>
+    <button onclick="addToCart('h.JPG')">Add to Cart</button>
   </div>
   <div class="product">
     <img src="images/tshirts/hh.jpg" alt="icon T-Shirt">
@@ -413,6 +413,21 @@ width: 100%;
   <button onclick="window.location.href='buy.html'">اشتري الان</button>
   <button onclick="clearCart()">افرغ السله</button>
 </div>
+
+<script>
+  document.getElementById("buyNow").addEventListener("click", function () {
+    const cart = document.getElementById("cart");
+    const items = cart.getElementsByTagName("img");
+    let products = [];
+
+    for (let i = 0; i < items.length; i++) {
+      products.push(items[i].alt); // نحفظ اسم المنتج من alt
+    }
+
+    // نخزن المنتجات في localStorage
+    localStorage.setItem("cartItems", JSON.stringify(products));
+  });
+</script>
 
 <script>
   function clearCart() {
