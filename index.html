@@ -1,296 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3almoda Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3alModa Store</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
       margin: 0;
-      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
       color: #333;
     }
+
     header {
-      background-color: #333;
+      background-color: #111;
       color: white;
-      padding: 20px;
       text-align: center;
-      font-size: 24px;
+      padding: 1rem;
+      font-size: 1.5rem;
     }
-    .categories {
+
+    .nav-buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin: 20px 0;
+      margin: 1rem 0;
     }
-    .categories button {
-      padding: 10px 20px;
-      cursor: pointer;
+
+    .nav-buttons button {
       background-color: #333;
       color: white;
       border: none;
-      border-radius: 5px;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
     }
+
     .section {
       display: none;
-      padding: 20px;
-      text-align: center;
-    }
-    .product {
-      background-color: #fff;
-      padding: 15px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      display: inline-block;
-      margin: 10px;
-      width: 180px;
-      text-align: center;
-      transition: transform 0.2s ease;
-    }
-    .product:hover {
-      transform: scale(1.03);
-    }
-    .product img {
-      width: 100%;
-      border-radius: 8px;
-    }
-    button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: background-color 0.2s ease;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    #cart-container {
-      background-color: #e9e9e9;
-      padding: 15px;
-      border-radius: 10px;
-      margin: 20px auto;
-      max-width: 600px;
-    }
-    #cart-title {
-      text-align: center;
-      color: #333;
-      margin-bottom: 15px;
-    }
-    #cart-items {
-      display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
+      padding: 1rem;
     }
-    #cart-items img {
-      width: 100px;
-      margin: 5px;
-      border-radius: 5px;
-    }
-    .cart-item {
-      position: relative;
-      margin: 5px;
-    }
-    .remove-btn {
-      position: absolute;
-      top: 0;
-      right: 0;
-      background: red;
-      color: white;
-      border: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-    .modal {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.5);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-    }
-    .modal-content {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 400px;
+
+    .product {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 10px;
+      width: 160px;
       text-align: center;
     }
 
-    @media (max-width: 768px) {
-      body {
-        font-size: 14px;
-        padding: 10px;
-      }
-      .categories {
-        flex-direction: column;
-        align-items: center;
-      }
-      .categories button {
-        width: 90%;
-        margin-bottom: 10px;
-      }
+    .product img {
+      max-width: 100%;
+      border-radius: 6px;
+    }
+
+    .product button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      margin-top: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #cart-container {
+      background-color: white;
+      margin: 1rem;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    #cart-items img {
+      width: 80px;
+      margin: 5px;
+      border-radius: 5px;
+    }
+
+    @media (max-width: 600px) {
       .product {
-        width: 90%;
-        margin: 10px auto;
-      }
-      header {
-        font-size: 18px;
-        padding: 10px;
-      }
-      button {
         width: 100%;
       }
-      #cart-items img {
-        width: 70px;
+
+      .nav-buttons {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
 </head>
 <body>
-<header>3alModa</header>
-<button onclick="window.location.href='add-product.html'">اضف منتجك</button>
-<button onclick="window.location.href='about.html'">من نحن</button>
-<div class="categories">
-  <button onclick="showSection('tshirts')">T-Shirts</button>
-  <button onclick="showSection('dress')">Dress</button>
-  <button onclick="showSection('hoodies')">Hoodies</button>
-  <button onclick="showSection('shoes')">Shoes</button>
-</div>
-<div id="tshirts" class="section">
-  <div class="product">
-    <img src="images/tshirts/h.jpg" alt="off white T-Shirt">
-    
-  <p>off white T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('images/tshirts/h.jpg')">Add to Cart</button>
-  </div>
-  <div class="product">
-    <img src="images/tshirts/hh.jpg" alt="icon T-Shirt">
-      <p>icon T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('images/tshirts/hh.jpg')">Add to Cart</button>
+
+  <header>3alModa Store</header>
+
+  <div class="nav-buttons">
+    <button onclick="showSection('tshirts')">T-Shirts</button>
+    <button onclick="showSection('hoodies')">Hoodies</button>
+    <button onclick="showSection('dress')">Dress</button>
+    <button onclick="showSection('shoes')">Shoes</button>
   </div>
 
-
- <div class="product">
-    <img src="images/tshirts/hhh.jpg" alt="wing T-Shirt">
-     <p>wing T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('images/tshirts/hhh.jpg')">Add to Cart</button>
+  <div id="tshirts" class="section" style="display:flex;">
+    <div class="product">
+      <img src="images/tshirts/h.jpg" alt="T-Shirt 1" />
+      <p>Off White</p>
+      <p>300 LE</p>
+      <button onclick="addToCart('images/tshirts/h.jpg')">Add to Cart</button>
+    </div>
+    <!-- Add more T-Shirts -->
   </div>
 
-
-
-  <div class="product">
-    <img src="images/tshirts/hhhh.jpg" alt="traple A T-Shirt">
-      <p>traple A T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('images/tshirts/hhhh.jpg')">Add to Cart</button>
-  </div>
-</div>
-
-<div id="hoodies" class="section">
-  <div class="product">
-    <img src="images/hoodies/b.jpg" alt="hoodie1">
-    <p>500LE</p>
-    <button onclick="addToCart('images/hoodies/b.jpg')">Add to Cart</button>
-  </div>
-  <div class="product">
-    <img src="images/hoodies/bb.jpg" alt="hoodie2">
-    
-    <p>500LE</p>
-    <button onclick="addToCart('images/hoodies/bb.jpg')">Add to Cart</button>
+  <div id="hoodies" class="section">
+    <div class="product">
+      <img src="images/hoodies/b.jpg" alt="Hoodie" />
+      <p>500 LE</p>
+      <button onclick="addToCart('images/hoodies/b.jpg')">Add to Cart</button>
+    </div>
   </div>
 
-
-  <div class="product">
-    <img src="images/hoodies/bbb.jpg" alt="hoodie3">
-    
-    <p>500LE</p>
-    <button onclick="addToCart('images/hoodies/bbb.jpg')">Add to Cart</button>
-  </div>
-</div>
-
-<div id="shoes" class="section">
-  <div class="product">
-    <img src="images/shoes/ho.jpg" alt="shoes1">
-    
-    <p>340LE</p>
-    <button onclick="addToCart('images/shoes/ho.jpg')">Add to Cart</button>
-  </div>
-  <div class="product">
-    <img src="images/shoes/io.jpg" alt="shoes2">
-    
-    <p>360LE</p>
-    <button onclick="addToCart('images/shoes/io.jpg')">Add to Cart</button>
+  <div id="dress" class="section">
+    <div class="product">
+      <img src="images/dress/pop.jpg" alt="Dress" />
+      <p>White Dress</p>
+      <p>550 LE</p>
+      <button onclick="addToCart('images/dress/pop.jpg')">Add to Cart</button>
+    </div>
   </div>
 
+  <div id="shoes" class="section">
+    <div class="product">
+      <img src="images/shoes/ho.jpg" alt="Shoes" />
+      <p>340 LE</p>
+      <button onclick="addToCart('images/shoes/ho.jpg')">Add to Cart</button>
+    </div>
+  </div>
 
-  <div class="product">
-    <img src="images/shoes/iuu.jpg" alt="shoes3">
-    
-    <p>355LE</p>
-    <button onclick="addToCart('images/shoes/iuu.jpg')">Add to Cart</button>
+  <div id="cart-container">
+    <h3>سلة المشتريات</h3>
+    <div id="cart-items"></div>
+    <button onclick="clearCart()">افرغ السلة</button>
   </div>
-</div>
-</div>
 
-<div id="dress" class="section">
-  <div class="product">
-    <img src="images/dress/pop.jpg" alt="white dress1">
-    
-    <p>white dress</p>
-    <p>550LE</p>
-    <button onclick="addToCart('images/dress/pop.jpg')">Add to Cart</button>
-  </div>
-  <div class="product">
-    <img src="images/dress/olo.jpg" alt="grey dress2">
-    
-    <p>grey dress</p>
-    <p>750LE</p>
-    <button onclick="addToCart('images/dress/olo.jpg')">Add to Cart</button>
-  </div>
-</div>
-<div id="cart-container">
-  <h2 id="cart-title">Cart</h2>
-  <div id="cart-items"></div>
-  <button onclick="window.location.href='buy.html'">اشتري الان</button>
-  <button onclick="clearCart()">افرغ السله</button>
-</div>
-<script>
-  function clearCart() {
-    const cartItems = document.getElementById("cart-items");
-    cartItems.innerHTML = "";
-  }
-  function addToCart(imageSrc) {
-    const cartItems = document.getElementById('cart-items');
-    const item = document.createElement('div');
-    item.className = 'cart-item';
-    item.innerHTML = `
-      <img src="${imageSrc}" alt="cart item">
-      <button class="remove-btn" onclick="this.parentElement.remove()">X</button>
-    `;
-    cartItems.appendChild(item);
-  }
-  function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.style.display = 'none');
-    document.getElementById(sectionId).style.display = 'block';
-  }
-</script>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function addToCart(imageSrc) {
+      const cartItems = document.getElementById("cart-items");
+      const img = document.createElement("img");
+      img.src = imageSrc;
+      cartItems.appendChild(img);
+    }
+
+    function clearCart() {
+      document.getElementById("cart-items").innerHTML = "";
+    }
+  </script>
+
 </body>
 </html>
