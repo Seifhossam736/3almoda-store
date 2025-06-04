@@ -1,37 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
   <meta charset="UTF-8">
   <title>3almoda Store</title>
   
-  
+  <style>
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: white;
+  padding: 20%;
+  border-radius: 10%;
+  width: 250%;
+  text-align: center;
+}
+.close {
+  float: right;
+  font-size: 2vh;
+  cursor: pointer;
+}
+</style>
   <style>
   #cart-items,
 .products {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 1vh;
   justify-content: center;
 }
 img {
   max-width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-radius: 5vh;
 }
-@media (max-width: 600px) {
+@media (max-width: 6vh) {
   body {
-    font-size: 16px;
+    font-size: 1.6vh;
   }
 
   button {
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 10vh;
   }
 
   #cart-container {
-    margin: 10px;
-    padding: 10px;
+    margin: 10vh;
+    padding: 10vh;
   }
 }
   
@@ -293,7 +318,24 @@ width: 100%;
     background-color: #555;
   }
 </style>
+<style>
+/* لتصميم التلفونات */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
 
+  .container {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+</style>
 
 </head>
 <body>
@@ -312,97 +354,97 @@ width: 100%;
 
 <div id="tshirts" class="section">
   <div class="product">
-    <img src="./h.jpg" alt="off white T-Shirt">
+    <img src="images/tshirts/h.jpg" alt="off white T-Shirt">
     
   <p>off white T-shirt</p>
     <p>300LE</p>
-    <button onclick="addToCart('./h.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/tshirts/h.jpg')">Add to Cart</button>
   </div>
   <div class="product">
-    <img src="./hh.jpg" alt="icon T-Shirt">
+    <img src="images/tshirts/hh.jpg" alt="icon T-Shirt">
       <p>icon T-shirt</p>
     <p>300LE</p>
-    <button onclick="addToCart('./hh.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/tshirts/hh.jpg')">Add to Cart</button>
   </div>
 
 
  <div class="product">
-    <img src="./hhh.jpg" alt="wing T-Shirt">
+    <img src="images/tshirts/hhh.jpg" alt="wing T-Shirt">
      <p>wing T-shirt</p>
     <p>300LE</p>
-    <button onclick="addToCart('./hhh.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/tshirts/hhh.jpg')">Add to Cart</button>
   </div>
 
 
 
   <div class="product">
-    <img src="./hhhh.jpg" alt="traple A T-Shirt">
+    <img src="images/tshirts/hhhh.jpg" alt="traple A T-Shirt">
       <p>traple A T-shirt</p>
     <p>300LE</p>
-    <button onclick="addToCart('./hhhh.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/tshirts/hhhh.jpg')">Add to Cart</button>
   </div>
 </div>
 
 <div id="hoodies" class="section">
   <div class="product">
-    <img src="./b.jpg" alt="hoodie1">
+    <img src="images/hoodies/b.jpg" alt="hoodie1">
     <p>500LE</p>
-    <button onclick="addToCart('./b.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/hoodies/b.jpg')">Add to Cart</button>
   </div>
   <div class="product">
-    <img src="./bb.jpg" alt="hoodie2">
+    <img src="images/hoodies/bb.jpg" alt="hoodie2">
     
     <p>500LE</p>
-    <button onclick="addToCart('./bb.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/hoodies/bb.jpg')">Add to Cart</button>
   </div>
 
 
   <div class="product">
-    <img src="./bbb.jpg" alt="hoodie3">
+    <img src="images/hoodies/bbb.jpg" alt="hoodie3">
     
     <p>500LE</p>
-    <button onclick="addToCart('./bbb.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/hoodies/bbb.jpg')">Add to Cart</button>
   </div>
 </div>
 
 <div id="shoes" class="section">
   <div class="product">
-    <img src="./ho.jpg" alt="shoes1">
+    <img src="images/shoes/ho.jpg" alt="shoes1">
     
     <p>340LE</p>
-    <button onclick="addToCart('./ho.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/shoes/ho.jpg')">Add to Cart</button>
   </div>
   <div class="product">
-    <img src="./io.jpg" alt="shoes2">
+    <img src="images/shoes/io.jpg" alt="shoes2">
     
     <p>360LE</p>
-    <button onclick="addToCart('./io.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/shoes/io.jpg')">Add to Cart</button>
   </div>
 
 
   <div class="product">
-    <img src="./iuu.jpg" alt="shoes3">
+    <img src="images/shoes/iuu.jpg" alt="shoes3">
     
     <p>355LE</p>
-    <button onclick="addToCart('./iuu.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/shoes/iuu.jpg')">Add to Cart</button>
   </div>
 </div>
 </div>
 
 <div id="dress" class="section">
   <div class="product">
-    <img src="./pop.jpg" alt="white dress1">
+    <img src="images/dress/pop.jpg" alt="white dress1">
     
     <p>white dress</p>
     <p>550LE</p>
-    <button onclick="addToCart('./pop.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/dress/pop.jpg')">Add to Cart</button>
   </div>
   <div class="product">
-    <img src="./olo.jpg" alt="grey dress2">
+    <img src="images/dress/olo.jpg" alt="grey dress2">
     
     <p>grey dress</p>
     <p>750LE</p>
-    <button onclick="addToCart('./olo.jpg')">Add to Cart</button>
+    <button onclick="addToCart('images/dress/olo.jpg')">Add to Cart</button>
   </div>
 </div>
 
@@ -413,7 +455,8 @@ width: 100%;
   <button onclick="window.location.href='buy.html'">اشتري الان</button>
   <button onclick="clearCart()">افرغ السله</button>
 </div>
-
+  </div>
+</div>
 <script>
   document.getElementById("buyNow").addEventListener("click", function () {
     const cart = document.getElementById("cart");
