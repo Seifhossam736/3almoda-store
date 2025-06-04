@@ -1,44 +1,48 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3alModa Store</title>
+  <title>3alModa</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #f9f9f9;
-      color: #333;
     }
 
     header {
       background-color: #111;
-      color: white;
+      color: #fff;
       text-align: center;
-      padding: 1rem;
+      padding: 1rem 0;
       font-size: 1.5rem;
     }
 
-    .nav-buttons {
+    nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      margin: 1rem 0;
+      background-color: #333;
+      padding: 0.5rem;
     }
 
-    .nav-buttons button {
-      background-color: #333;
+    nav button {
+      background-color: #444;
       color: white;
       border: none;
       padding: 10px 20px;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
     }
 
-    .section {
-      display: none;
+    nav button:hover {
+      background-color: #666;
+    }
+
+    .products {
+      display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
@@ -46,124 +50,132 @@
     }
 
     .product {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      padding: 10px;
-      width: 160px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 200px;
+      padding: 15px;
       text-align: center;
     }
 
     .product img {
-      max-width: 100%;
-      border-radius: 6px;
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
     }
 
     .product button {
-      background-color: #007bff;
-      color: white;
+      background-color: #222;
+      color: #fff;
       border: none;
-      padding: 6px 12px;
-      margin-top: 8px;
+      padding: 10px;
+      margin-top: 10px;
       border-radius: 5px;
       cursor: pointer;
     }
 
-    #cart-container {
-      background-color: white;
-      margin: 1rem;
+    .cart {
       padding: 1rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
     }
 
-    #cart-items img {
-      width: 80px;
-      margin: 5px;
+    .cart button {
+      background-color: #000;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      margin: 10px;
       border-radius: 5px;
+      cursor: pointer;
     }
 
     @media (max-width: 600px) {
       .product {
-        width: 100%;
-      }
-
-      .nav-buttons {
-        flex-direction: column;
-        align-items: center;
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
+  <header>3alModa</header>
 
-  <header>3alModa Store</header>
+  <nav>
+    <button onclick="showCategory('tshirts')">T-Shirts</button>
+    <button onclick="showCategory('dress')">Dress</button>
+    <button onclick="showCategory('hoodies')">Hoodies</button>
+    <button onclick="showCategory('shoes')">Shoes</button>
+  </nav>
 
-  <div class="nav-buttons">
-    <button onclick="showSection('tshirts')">T-Shirts</button>
-    <button onclick="showSection('hoodies')">Hoodies</button>
-    <button onclick="showSection('dress')">Dress</button>
-    <button onclick="showSection('shoes')">Shoes</button>
-  </div>
+  <div class="products" id="products"></div>
 
-  <div id="tshirts" class="section" style="display:flex;">
-    <div class="product">
-      <img src="images/tshirts/h.jpg" alt="T-Shirt 1" />
-      <p>Off White</p>
-      <p>300 LE</p>
-      <button onclick="addToCart('images/tshirts/h.jpg')">Add to Cart</button>
-    </div>
-    <!-- Add more T-Shirts -->
-  </div>
-
-  <div id="hoodies" class="section">
-    <div class="product">
-      <img src="images/hoodies/b.jpg" alt="Hoodie" />
-      <p>500 LE</p>
-      <button onclick="addToCart('images/hoodies/b.jpg')">Add to Cart</button>
-    </div>
-  </div>
-
-  <div id="dress" class="section">
-    <div class="product">
-      <img src="images/dress/pop.jpg" alt="Dress" />
-      <p>White Dress</p>
-      <p>550 LE</p>
-      <button onclick="addToCart('images/dress/pop.jpg')">Add to Cart</button>
-    </div>
-  </div>
-
-  <div id="shoes" class="section">
-    <div class="product">
-      <img src="images/shoes/ho.jpg" alt="Shoes" />
-      <p>340 LE</p>
-      <button onclick="addToCart('images/shoes/ho.jpg')">Add to Cart</button>
-    </div>
-  </div>
-
-  <div id="cart-container">
-    <h3>سلة المشتريات</h3>
-    <div id="cart-items"></div>
+  <div class="cart">
+    <h2>Cart</h2>
+    <div id="cartItems"></div>
+    <button onclick="checkout()">ادفع الآن</button>
     <button onclick="clearCart()">افرغ السلة</button>
   </div>
 
   <script>
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(section => section.style.display = 'none');
-      document.getElementById(id).style.display = 'flex';
+    const productsData = {
+      tshirts: [
+        { name: 'T-Shirt 1', img: 'https://via.placeholder.com/200', price: 100 },
+        { name: 'T-Shirt 2', img: 'https://via.placeholder.com/200', price: 120 }
+      ],
+      dress: [
+        { name: 'Dress 1', img: 'https://via.placeholder.com/200', price: 250 },
+        { name: 'Dress 2', img: 'https://via.placeholder.com/200', price: 300 }
+      ],
+      hoodies: [
+        { name: 'Hoodie 1', img: 'https://via.placeholder.com/200', price: 180 },
+        { name: 'Hoodie 2', img: 'https://via.placeholder.com/200', price: 200 }
+      ],
+      shoes: [
+        { name: 'Shoes 1', img: 'https://via.placeholder.com/200', price: 150 },
+        { name: 'Shoes 2', img: 'https://via.placeholder.com/200', price: 170 }
+      ]
+    };
+
+    let cart = [];
+
+    function showCategory(category) {
+      const container = document.getElementById('products');
+      container.innerHTML = '';
+
+      productsData[category].forEach(product => {
+        const el = document.createElement('div');
+        el.className = 'product';
+        el.innerHTML = `
+          <img src="${product.img}" alt="${product.name}" />
+          <h4>${product.name}</h4>
+          <p>${product.price} EGP</p>
+          <button onclick='addToCart("${product.name}", ${product.price})'>أضف إلى السلة</button>
+        `;
+        container.appendChild(el);
+      });
     }
 
-    function addToCart(imageSrc) {
-      const cartItems = document.getElementById("cart-items");
-      const img = document.createElement("img");
-      img.src = imageSrc;
-      cartItems.appendChild(img);
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      updateCart();
+    }
+
+    function updateCart() {
+      const cartItems = document.getElementById('cartItems');
+      cartItems.innerHTML = cart.map(item => `<p>${item.name} - ${item.price} EGP</p>`).join('');
+    }
+
+    function checkout() {
+      alert('تم الشراء بنجاح!');
+      cart = [];
+      updateCart();
     }
 
     function clearCart() {
-      document.getElementById("cart-items").innerHTML = "";
+      cart = [];
+      updateCart();
     }
-  </script>
 
+    showCategory('tshirts');
+  </script>
 </body>
 </html>
