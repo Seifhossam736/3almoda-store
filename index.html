@@ -1,209 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- 
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>3almoda Store</title>
-  
   <style>
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-}
-.modal-content {
-  background: white;
-  padding: 20%;
-  border-radius: 10%;
-  width: 250%;
-  text-align: center;
-}
-.close {
-  float: right;
-  font-size: 2vh;
-  cursor: pointer;
-}
-</style>
-  <style>
-  #cart-items,
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1vh;
-  justify-content: center;
-}
-img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 5vh;
-}
-@media (max-width: 6vh) {
-  body {
-    font-size: 1.6vh;
-  }
-
-  button {
-    width: 100%;
-    margin-bottom: 10vh;
-  }
-
-  #cart-container {
-    margin: 10vh;
-    padding: 10vh;
-  }
-}
-  
-  </style>
-  
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- 
-
-   background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-  }
-
- 
-
- h1, h3 {
-    color: #444;
-    text-align: center;
-  }
-
-  .product {
-    background-
-
-color: #fff;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px 
-
-rgba(0,0,0,0.1);
-    display: inline-block;
-    margin: 10px;
-    width: 180px;
-    
-
-text-align: center;
-    transition: transform 0.2s ease;
-  }
-
-  .product:hover {
-    
-
-transform: scale(1.03);
-  }
-
-  .product img {
-    width: 100%;
-    border-radius: 
-
-8px;
-  }
-
-  button {
-    background-color: #007bff;
-    color: white;
-    border: 
-
-none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    
-
-margin-top: 10px;
-    transition: background-color 0.2s ease;
-  }
-
-  button:hover {
-  
-
-  background-color: #0056b3;
-  }
-
-  #cart {
-    background-color: #fff;
-    padding: 
-
-20px;
-    margin-top: 40px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px 
-
-rgba(0,0,0,0.1);
-  }
-
-  #cart img {
-    width: 80px;
-    border-radius: 6px;
-    
-
-margin: 5px;
-  }
-
-  form {
-    max-width: 400px;
-    margin: 30px auto;
-    
-
-background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 
-
-10px rgba(0,0,0,0.1);
-  }
-
-  input[type="text"],
-  input[type="email"] {
-    width: 
-
-100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px 
-
-solid #ccc;
-    font-size: 14px;
-  }
-
-  input[type="submit"],
-  form button {
-    
-
-width: 100%;
-    font-size: 16px;
-  }
-</style>
-
-  
-  
-  
-  
-  
-  <style>
-	  
-	  
-	  
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
+      background-color: #f4f4f4;
       margin: 0;
-      padding: 0;
+      padding: 20px;
+      color: #333;
     }
-
     header {
       background-color: #333;
       color: white;
@@ -211,62 +22,83 @@ width: 100%;
       text-align: center;
       font-size: 24px;
     }
-
     .categories {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      gap: 10px;
       margin: 20px 0;
     }
-
     .categories button {
-      margin: 0 10px;
       padding: 10px 20px;
       cursor: pointer;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 5px;
     }
-
     .section {
       display: none;
       padding: 20px;
       text-align: center;
     }
-
     .product {
-      display: inline-block;
-      margin: 10px;
-      position: relative;
-    }
-
-    .product img {
-      width: 150px;
-      height: auto;
-    }
-
-    .product button {
-      display: block;
-      margin-top: 5px;
-      padding: 5px 10px;
-    }
-
-    #cart {
-      border-top: 2px solid #ccc;
-      padding: 20px;
       background-color: #fff;
-    }
-
-    #cart h2 {
-      text-align: center;
-    }
-
-    .cart-item {
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       display: inline-block;
       margin: 10px;
-      position: relative;
+      width: 180px;
+      text-align: center;
+      transition: transform 0.2s ease;
     }
-
-    .cart-item img {
+    .product:hover {
+      transform: scale(1.03);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.2s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    #cart-container {
+      background-color: #e9e9e9;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+    #cart-title {
+      text-align: center;
+      color: #333;
+      margin-bottom: 15px;
+    }
+    #cart-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    #cart-items img {
       width: 100px;
+      margin: 5px;
+      border-radius: 5px;
     }
-
+    .cart-item {
+      position: relative;
+      margin: 5px;
+    }
     .remove-btn {
       position: absolute;
       top: 0;
@@ -277,81 +109,67 @@ width: 100%;
       font-weight: bold;
       cursor: pointer;
     }
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 14px;
+        padding: 10px;
+      }
+      .categories {
+        flex-direction: column;
+        align-items: center;
+      }
+      .categories button {
+        width: 90%;
+        margin-bottom: 10px;
+      }
+      .product {
+        width: 90%;
+        margin: 10px auto;
+      }
+      header {
+        font-size: 18px;
+        padding: 10px;
+      }
+      button {
+        width: 100%;
+      }
+      #cart-items img {
+        width: 70px;
+      }
+    }
   </style>
-  
-  
-  <style>
-  body {
-    background-color: #f5f5f5; /* لون خلفية الموقع */
-    font-family: Arial, sans-serif;
-  }
-
-  #cart-container {
-    background-color: #e9e9e9; /* درجة أفتح شوية */
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px;
-  }
-
-  #cart-title {
-    text-align: center;
-    color: #333;
-    margin-bottom: 15px;
-  }
-
-  #cart-items img {
-    width: 100px;
-    margin: 5px;
-    border-radius: 5px;
-  }
-
-  button {
-    padding: 10px 15px;
-    background-color: #333;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #555;
-  }
-</style>
-<style>
-/* لتصميم التلفونات */
-@media (max-width: 768px) {
-  body {
-    font-size: 14px;
-  }
-
-  .container {
-    flex-direction: column;
-    padding: 10px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-</style>
-
 </head>
 <body>
-
 <header>3alModa</header>
-
-  <button onclick="window.location.href='add-product.html'">اضف منتجك</button>
-  
-  <button onclick="window.location.href='about.html'">من نحن</button>
+<button onclick="window.location.href='add-product.html'">اضف منتجك</button>
+<button onclick="window.location.href='about.html'">من نحن</button>
 <div class="categories">
   <button onclick="showSection('tshirts')">T-Shirts</button>
   <button onclick="showSection('dress')">Dress</button>
   <button onclick="showSection('hoodies')">Hoodies</button>
   <button onclick="showSection('shoes')">Shoes</button>
 </div>
-
 <div id="tshirts" class="section">
   <div class="product">
     <img src="images/tshirts/h.jpg" alt="off white T-Shirt">
@@ -447,60 +265,17 @@ width: 100%;
     <button onclick="addToCart('images/dress/olo.jpg')">Add to Cart</button>
   </div>
 </div>
-
 <div id="cart-container">
   <h2 id="cart-title">Cart</h2>
   <div id="cart-items"></div>
-  
   <button onclick="window.location.href='buy.html'">اشتري الان</button>
   <button onclick="clearCart()">افرغ السله</button>
 </div>
-  </div>
-</div>
-<script>
-  document.getElementById("buyNow").addEventListener("click", function () {
-    const cart = document.getElementById("cart");
-    const items = cart.getElementsByTagName("img");
-    let products = [];
-
-    for (let i = 0; i < items.length; i++) {
-      products.push(items[i].alt); // نحفظ اسم المنتج من alt
-    }
-
-    // نخزن المنتجات في localStorage
-    localStorage.setItem("cartItems", JSON.stringify(products));
-  });
-</script>
-
-<script>
-  function clearCart() {
-    document.getElementById("cart").innerHTML = "";
-  }
-  
-  function addToCart(imageSrc) {
-  const cartItems = document.getElementById("cart-items");
-  const img = document.createElement("img");
-  img.src = imageSrc;
-  img.style.width = "100px";
-  img.style.margin = "5px";
-  cartItems.appendChild(img);
-}
-  
-</script>
-
 <script>
   function clearCart() {
     const cartItems = document.getElementById("cart-items");
-    cartItems.innerHTML = ""; // بس بيمسح الصور من غير ما يمسح العنوان أو الزر
+    cartItems.innerHTML = "";
   }
-</script>
-<script>
-  function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => section.style.display = 'none');
-    document.getElementById(sectionId).style.display = 'block';
-  }
-
   function addToCart(imageSrc) {
     const cartItems = document.getElementById('cart-items');
     const item = document.createElement('div');
@@ -511,7 +286,11 @@ width: 100%;
     `;
     cartItems.appendChild(item);
   }
+  function showSection(sectionId) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => section.style.display = 'none');
+    document.getElementById(sectionId).style.display = 'block';
+  }
 </script>
-
 </body>
 </html>
