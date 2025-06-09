@@ -135,15 +135,15 @@
   <header>
     <h1>🛍️ ع الموضة</h1>
     <div class="top-links">
-      <a href="#">اضف منتجك</a>
-      <a href="#">من نحن</a>
+      <a href="#" onclick="alert('صفحة اضافة المنتج قيد الإنشاء')">اضف منتجك</a>
+      <a href="#" onclick="alert('صفحة من نحن قيد الإنشاء')">من نحن</a>
     </div>
     <nav>
-      <button onclick="filterProducts('all')" class="active">الكل</button>
-      <button onclick="filterProducts('T-Shirt')">تيشيرتات</button>
-      <button onclick="filterProducts('Dress')">فساتين</button>
-      <button onclick="filterProducts('Hoodie')">هودي</button>
-      <button onclick="filterProducts('Shoes')">أحذية</button>
+      <button onclick="filterProducts('all', this)" class="active">الكل</button>
+      <button onclick="filterProducts('T-Shirt', this)">تيشيرتات</button>
+      <button onclick="filterProducts('Dress', this)">فساتين</button>
+      <button onclick="filterProducts('Hoodie', this)">هودي</button>
+      <button onclick="filterProducts('Shoes', this)">أحذية</button>
     </nav>
   </header>
 
@@ -163,10 +163,14 @@
 
   <script>
     const products = [
-      { name: "تيشيرت رجالي", price: 150, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt" },
-      { name: "فستان صيفي", price: 300, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress" },
-      { name: "هودي شتوي", price: 250, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie" },
+      { name: "off white T-shirt", price: 150, category: "T-Shirt", img: "./h.jpg" },
+      { name: "icon T-shirt", price: 300, category: "Dress", img: "./hh.jpg" },
+      { name: "هودي شتوي", price: 250, category: "Hoodie", img: "./b.jpg" },
       { name: "حذاء رياضي", price: 400, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes" },
+      { name: "تيشيرت كاجوال", price: 180, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt+2" },
+      { name: "فستان سهرة", price: 500, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress+2" },
+      { name: "هودي قطني", price: 270, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie+2" },
+      { name: "حذاء كلاسيك", price: 350, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes+2" }
     ];
 
     const cart = [];
@@ -176,21 +180,20 @@
       list.innerHTML = '';
       products
         .filter(p => filter === 'all' || p.category === filter)
-        .forEach((product, index) => {
+        .forEach((product) => {
           const el = document.createElement('div');
           el.className = 'product';
           el.innerHTML = `
             <img src="${product.img}" alt="${product.name}" />
             <h3>${product.name}</h3>
             <p>${product.price} جنيه</p>
-            <button onclick="addToCart(${index})">اضف إلى السلة</button>
+            <button onclick='addToCart(${JSON.stringify(product)})'>اضف إلى السلة</button>
           `;
           list.appendChild(el);
         });
     }
 
-    function addToCart(index) {
-      const product = products[index];
+    function addToCart(product) {
       const existing = cart.find(p => p.name === product.name);
       if (existing) {
         existing.qty++;
@@ -241,13 +244,12 @@
       }
     }
 
-    function filterProducts(cat) {
-      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
+    function filterProducts(cat, btn) {
+      document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
       displayProducts(cat);
     }
 
-    // بدء العرض
     displayProducts();
   </script>
 </body>
