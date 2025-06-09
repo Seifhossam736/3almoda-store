@@ -135,15 +135,9 @@
   <header>
     <h1>🛍️ ع الموضة</h1>
     <div class="top-links">
-      
-  <button onclick="window.location.href='add-product.html'">اضف منتجك</button>
-  
-  <button onclick="window.location.href='about.html'">من نحن</button>
+      <a href="#" onclick="alert('صفحة اضافة المنتج قيد الإنشاء')">اضف منتجك</a>
+      <a href="#" onclick="alert('صفحة من نحن قيد الإنشاء')">من نحن</a>
     </div>
-    <form id="order-form" action="https://formspree.io/f/abcde123" method="POST">
-  <input type="hidden" name="cartDetails" id="cart-details" />
-</form>
-
     <nav>
       <button onclick="filterProducts('all', this)" class="active">الكل</button>
       <button onclick="filterProducts('T-Shirt', this)">تيشيرتات</button>
@@ -153,9 +147,7 @@
     </nav>
   </header>
 
-  <section class="products" id="product-list">
-    <!-- سيتم إدخال المنتجات هنا بواسطة JavaScript -->
-  </section>
+  <section class="products" id="product-list"></section>
 
   <section class="cart" id="cart">
     <h2>🛒 السلة</h2>
@@ -163,20 +155,25 @@
     <div class="total" id="cart-total">المجموع: 0 جنيه</div>
     <div class="cart-buttons">
       <button onclick="clearCart()">افرغ السلة</button>
-  <button onclick="window.location.href='buy.html'">اشتري الان</button>
+      <button onclick="checkout()">اشتري الآن</button>
     </div>
   </section>
 
+  <!-- Hidden form to send cart to Formspree -->
+  <form id="order-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <input type="hidden" name="cartDetails" id="cart-details" />
+  </form>
+
   <script>
     const products = [
-      { name: "off white T-shirt", price: 250, category: "T-Shirt", img: "./h.jpg" },
-      { name: "icon T-shirt", price: 250, category: "T-shirt", img: "./hh.jpg" },
-      { name: "hoddie1", price: 500, category: "Hoodie", img: "./b.jpg" },
-      { name: "shoes1", price: 400, category: "Shoes", img: "./io.jpg" },
-      { name: "white dress", price: 750, category: "Dress", img: "./pop.jpg" },
-      { name: "grey dress", price: 1125, category: "Dress", img: "./olo.jpg" },
-      { name: "hoddie2", price: 500, category: "Hoodie", img: "./bb.jpg" },
-      { name: "shoes2", price: 370, category: "Shoes", img: "./ho.jpg" }
+      { name: "تيشيرت رجالي", price: 150, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt" },
+      { name: "فستان صيفي", price: 300, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress" },
+      { name: "هودي شتوي", price: 250, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie" },
+      { name: "حذاء رياضي", price: 400, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes" },
+      { name: "تيشيرت كاجوال", price: 180, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt+2" },
+      { name: "فستان سهرة", price: 500, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress+2" },
+      { name: "هودي قطني", price: 270, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie+2" },
+      { name: "حذاء كلاسيك", price: 350, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes+2" }
     ];
 
     const cart = [];
@@ -244,10 +241,13 @@
     function checkout() {
       if (cart.length === 0) {
         alert("السلة فارغة!");
-      } else {
-        alert("تم إرسال طلبك بنجاح!");
-        clearCart();
+        return;
       }
+
+      const cartSummary = cart.map(item => `${item.name} ×${item.qty} = ${item.price * item.qty} جنيه`).join('\n');
+      document.getElementById("cart-details").value = cartSummary;
+
+      document.getElementById("order-form").submit();
     }
 
     function filterProducts(cat, btn) {
@@ -257,20 +257,6 @@
     }
 
     displayProducts();
-function checkout() {
-  if (cart.length === 0) {
-    alert("السلة فارغة!");
-    return;
-  }
-
-  const cartSummary = cart.map(item => `${item.name} ×${item.qty} = ${item.price * item.qty} جنيه`).join('\n');
-  document.getElementById("cart-details").value = cartSummary;
-
-  document.getElementById("order-form").submit();
-}
-
-
-    
   </script>
 </body>
 </html>
