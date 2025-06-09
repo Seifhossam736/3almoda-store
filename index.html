@@ -135,8 +135,10 @@
   <header>
     <h1>🛍️ ع الموضة</h1>
     <div class="top-links">
-      <a href="#" onclick="alert('صفحة اضافة المنتج قيد الإنشاء')">اضف منتجك</a>
-      <a href="#" onclick="alert('صفحة من نحن قيد الإنشاء')">من نحن</a>
+      
+  <button onclick="window.location.href='add-product.html'">اضف منتجك</button>
+  
+  <button onclick="window.location.href='about.html'">من نحن</button>
     </div>
     <nav>
       <button onclick="filterProducts('all', this)" class="active">الكل</button>
@@ -157,20 +159,20 @@
     <div class="total" id="cart-total">المجموع: 0 جنيه</div>
     <div class="cart-buttons">
       <button onclick="clearCart()">افرغ السلة</button>
-      <button onclick="checkout()">اشتري الآن</button>
+  <button onclick="window.location.href='buy.html'">اشتري الان</button>
     </div>
   </section>
 
   <script>
     const products = [
-      { name: "off white T-shirt", price: 150, category: "T-Shirt", img: "./h.jpg" },
-      { name: "icon T-shirt", price: 300, category: "Dress", img: "./hh.jpg" },
-      { name: "هودي شتوي", price: 250, category: "Hoodie", img: "./b.jpg" },
-      { name: "حذاء رياضي", price: 400, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes" },
-      { name: "تيشيرت كاجوال", price: 180, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt+2" },
-      { name: "فستان سهرة", price: 500, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress+2" },
-      { name: "هودي قطني", price: 270, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie+2" },
-      { name: "حذاء كلاسيك", price: 350, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes+2" }
+      { name: "off white T-shirt", price: 250, category: "T-Shirt", img: "./h.jpg" },
+      { name: "icon T-shirt", price: 250, category: "T-shirt", img: "./hh.jpg" },
+      { name: "hoddie1", price: 500, category: "Hoodie", img: "./b.jpg" },
+      { name: "shoes1", price: 400, category: "Shoes", img: "./io.jpg" },
+      { name: "white dress", price: 750, category: "Dress", img: "./pop.jpg" },
+      { name: "grey dress", price: 1125, category: "Dress", img: "./olo.jpg" },
+      { name: "hoddie2", price: 500, category: "Hoodie", img: "./bb.jpg" },
+      { name: "shoes2", price: 370, category: "Shoes", img: "./ho.jpg" }
     ];
 
     const cart = [];
