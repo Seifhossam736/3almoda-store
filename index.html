@@ -140,6 +140,10 @@
   
   <button onclick="window.location.href='about.html'">من نحن</button>
     </div>
+    <form id="order-form" action="https://formspree.io/f/abcde123" method="POST">
+  <input type="hidden" name="cartDetails" id="cart-details" />
+</form>
+
     <nav>
       <button onclick="filterProducts('all', this)" class="active">الكل</button>
       <button onclick="filterProducts('T-Shirt', this)">تيشيرتات</button>
@@ -253,6 +257,20 @@
     }
 
     displayProducts();
+function checkout() {
+  if (cart.length === 0) {
+    alert("السلة فارغة!");
+    return;
+  }
+
+  const cartSummary = cart.map(item => `${item.name} ×${item.qty} = ${item.price * item.qty} جنيه`).join('\n');
+  document.getElementById("cart-details").value = cartSummary;
+
+  document.getElementById("order-form").submit();
+}
+
+
+    
   </script>
 </body>
 </html>
