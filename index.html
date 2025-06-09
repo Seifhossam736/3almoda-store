@@ -1,216 +1,207 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>3alModa Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ع الموضة | متجر أونلاين</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background-color: #f5f5f5;
+      font-family: 'Segoe UI', sans-serif;
     }
+
+    body {
+      background-color: #f8f8f8;
+      color: #333;
+      padding: 20px;
+    }
+
     header {
-      background-color: black;
+      background-color: #ff4d4d;
+      padding: 20px;
       color: white;
       text-align: center;
-      padding: 1rem;
-      font-size: 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .nav-buttons {
+
+    header h1 {
+      font-size: 2rem;
+    }
+
+    nav {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-      background-color: #fff;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 15px 0;
     }
-    .nav-buttons button {
-      padding: 0.7rem 1.2rem;
-      background-color: black;
-      border: none;
+
+    nav button {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 10px 15px;
       border-radius: 5px;
-      color: white;
       cursor: pointer;
     }
-    .nav-buttons button:hover {
-      background-color: #0056b3;
+
+    nav button.active {
+      background-color: #ff4d4d;
+      color: white;
     }
-    .section {
-      display: none;
-      padding: 1rem;
-      display: none;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
     }
+
     .product {
       background: white;
+      padding: 15px;
       border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      width: 200px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
     }
+
     .product img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    }
-    .product button {
-      margin-top: 0.5rem;
-      padding: 0.5rem 1rem;
-      background-color: black;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .product button:hover {
-      background-color: #555;
-    }
-    #cart-container {
-      background-color: #fff;
-      padding: 1rem;
-      margin: 1rem;
+      max-width: 100%;
       border-radius: 10px;
-      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
     }
-    #cart-items img {
-      width: 80px;
-      margin: 0.5rem;
-      border-radius: 5px;
+
+    .product h3 {
+      margin: 10px 0 5px;
     }
+
+    .product p {
+      margin: 0 0 10px;
+    }
+
+    .cart {
+      margin-top: 30px;
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .total {
+      font-weight: bold;
+      text-align: center;
+      margin-top: 10px;
+    }
+
     @media (max-width: 600px) {
-      .nav-buttons {
-        flex-direction: column;
-        align-items: center;
+      nav button {
+        flex: 1 1 40%;
       }
-    }
-  </style>
-  <style>
-  
-    .header-buttons button {
-      background-color: black;
-      color: white;
-    }
-    
-    .header-buttons button:hover {
-      background-color: #0056b3;
-    }
-      .footer-buttons button {
-      background-color: black;
-      color: white;
-  
-  
-    .footer-buttons button:hover {
-      background-color: #0056b3;
     }
   </style>
 </head>
 <body>
+  <header>
+    <h1>🛍️ ع الموضة</h1>
+    <nav>
+      <button onclick="filterProducts('all')" class="active">الكل</button>
+      <button onclick="filterProducts('T-Shirt')">تيشيرتات</button>
+      <button onclick="filterProducts('Dress')">فساتين</button>
+      <button onclick="filterProducts('Hoodie')">هودي</button>
+      <button onclick="filterProducts('Shoes')">أحذية</button>
+    </nav>
+  </header>
 
-<header>3alModa</header>
-  <div class="header-buttons">
-  <button onclick="window.location.href='add-product.html'">اضف منتجك</button>
-  
-  <button onclick="window.location.href='about.html'">من نحن</button>
-</div>
-<div class="nav-buttons">
-  <button onclick="showSection('tshirts')">T-Shirts</button>
-  <button onclick="showSection('dress')">Dress</button>
-  <button onclick="showSection('hoodies')">Hoodies</button>
-  <button onclick="showSection('shoes')">Shoes</button>
-</div>
+  <section class="products" id="product-list">
+    <!-- سيتم إدخال المنتجات هنا بواسطة JavaScript -->
+  </section>
 
-<div id="tshirts" class="section">
-  <div class="product">
-    <img src="./h.jpg" alt="Off White T-shirt">
-    <p>Off White T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('./h.jpg')">Add to Cart</button>
-  </div>
-  
-  <div class="product">
-    <img src="./hh.jpg" alt="icon T-shirt">
-    <p>icon T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('./hh.jpg')">Add to Cart</button>
-  </div>
-  
-  <div class="product">
-    <img src="./hhh.jpg" alt="wing T-shirt">
-    <p>wing T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('./hhh.jpg')">Add to Cart</button>
-  </div>
-  
-  <div class="product">
-    <img src="./hhhh.jpg" alt="traple A T-shirt">
-    <p>traple A T-shirt</p>
-    <p>300LE</p>
-    <button onclick="addToCart('./hhhh.jpg')">Add to Cart</button>
-  </div>
-</div>
+  <section class="cart" id="cart">
+    <h2>🛒 السلة</h2>
+    <div id="cart-items"></div>
+    <div class="total" id="cart-total">المجموع: 0 جنيه</div>
+  </section>
 
-<div id="dress" class="section">
-  <div class="product">
-    <img src="./pop.jpg" alt="White Dress">
-    <p>White Dress</p>
-    <p>550LE</p>
-    <button onclick="addToCart('./pop.jpg')">Add to Cart</button>
-  </div>
-</div>
+  <script>
+    const products = [
+      { name: "تيشيرت رجالي", price: 150, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt" },
+      { name: "فستان صيفي", price: 300, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress" },
+      { name: "هودي شتوي", price: 250, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie" },
+      { name: "حذاء رياضي", price: 400, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes" },
+    ];
 
-<div id="hoodies" class="section">
-  <div class="product">
-    <img src="./b.jpg" alt="Hoodie">
-    <p>Hoodie</p>
-    <p>500LE</p>
-    <button onclick="addToCart('./b.jpg')">Add to Cart</button>
-  </div>
-</div>
+    const cart = [];
 
-<div id="shoes" class="section">
-  <div class="product">
-    <img src="./ho.jpg" alt="Shoes">
-    <p>Shoes</p>
-    <p>340LE</p>
-    <button onclick="addToCart('./ho.jpg')">Add to Cart</button>
-  </div>
-</div>
+    function displayProducts(filter = 'all') {
+      const list = document.getElementById('product-list');
+      list.innerHTML = '';
+      products
+        .filter(p => filter === 'all' || p.category === filter)
+        .forEach((product, index) => {
+          const el = document.createElement('div');
+          el.className = 'product';
+          el.innerHTML = `
+            <img src="${product.img}" alt="${product.name}" />
+            <h3>${product.name}</h3>
+            <p>${product.price} جنيه</p>
+            <button onclick="addToCart(${index})">اضف إلى السلة</button>
+          `;
+          list.appendChild(el);
+        });
+    }
 
-<div id="cart-container">
-  <h2>Cart</h2>
-  <div id="cart-items"></div>
-  <div class="footer-buttons">
-  <button onclick="clearCart()">افرغ السلة</button>  
-  <button onclick="window.location.href='buy.html'">اشتري الان</button>
-</div>
-</div>
+    function addToCart(index) {
+      const product = products[index];
+      const existing = cart.find(p => p.name === product.name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      updateCart();
+    }
 
-<script>
-  function showSection(sectionId) {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(s => s.style.display = 'none');
-    document.getElementById(sectionId).style.display = 'flex';
-  }
+    function updateCart() {
+      const cartItems = document.getElementById('cart-items');
+      const total = document.getElementById('cart-total');
+      cartItems.innerHTML = '';
+      let sum = 0;
 
-  function addToCart(imageSrc) {
-    const cartItems = document.getElementById('cart-items');
-    const img = document.createElement('img');
-    img.src = imageSrc;
-    cartItems.appendChild(img);
-  }
+      cart.forEach((item, i) => {
+        const el = document.createElement('div');
+        el.className = 'cart-item';
+        el.innerHTML = `
+          <span>${item.name} x${item.qty}</span>
+          <span>
+            ${item.price * item.qty} جنيه
+            <button onclick="removeItem(${i})">❌</button>
+          </span>
+        `;
+        cartItems.appendChild(el);
+        sum += item.price * item.qty;
+      });
+      total.innerText = `المجموع: ${sum} جنيه`;
+    }
 
-  function clearCart() {
-    document.getElementById('cart-items').innerHTML = '';
-  }
+    function removeItem(i) {
+      cart.splice(i, 1);
+      updateCart();
+    }
 
-  // Show default section
-  showSection('tshirts');
-</script>
+    function filterProducts(cat) {
+      document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+      displayProducts(cat);
+    }
 
+    // بدء العرض
+    displayProducts();
+  </script>
 </body>
 </html>
