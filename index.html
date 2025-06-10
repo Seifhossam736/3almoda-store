@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ع الموضة | متجر أونلاين</title>
+  <title>3almoda | متجر أونلاين</title>
   <style>
     * {
       box-sizing: border-box;
@@ -133,29 +133,30 @@
 </head>
 <body>
   <header>
-    <h1>🛍️ ع الموضة</h1>
+    <h1>🛍️3almoda</h1>
     <div class="top-links">
-      <a href="#" onclick="alert('صفحة اضافة المنتج قيد الإنشاء')">اضف منتجك</a>
-      <a href="#" onclick="alert('صفحة من نحن قيد الإنشاء')">من نحن</a>
+  <button onclick="window.location.href='add-product.html'">add your product</button>
+  
+  <button onclick="window.location.href='about.html'">who was us</button>
     </div>
     <nav>
-      <button onclick="filterProducts('all', this)" class="active">الكل</button>
-      <button onclick="filterProducts('T-Shirt', this)">تيشيرتات</button>
-      <button onclick="filterProducts('Dress', this)">فساتين</button>
-      <button onclick="filterProducts('Hoodie', this)">هودي</button>
-      <button onclick="filterProducts('Shoes', this)">أحذية</button>
+      <button onclick="filterProducts('all', this)" class="active">all</button>
+      <button onclick="filterProducts('T-Shirt', this)">T-shirts</button>
+      <button onclick="filterProducts('Dress', this)">dress</button>
+      <button onclick="filterProducts('Hoodie', this)">hoodies</button>
+      <button onclick="filterProducts('Shoes', this)">shoes</button>
     </nav>
   </header>
 
   <section class="products" id="product-list"></section>
 
   <section class="cart" id="cart">
-    <h2>🛒 السلة</h2>
+    <h2>🛒 cart</h2>
     <div id="cart-items"></div>
     <div class="total" id="cart-total">المجموع: 0 جنيه</div>
     <div class="cart-buttons">
-      <button onclick="clearCart()">افرغ السلة</button>
-      <button onclick="checkout()">اشتري الآن</button>
+      <button onclick="clearCart()">clear cart</button>
+  <button onclick="window.location.href='buy.html'">buy now</button>
     </div>
   </section>
 
@@ -166,14 +167,14 @@
 
   <script>
     const products = [
-      { name: "تيشيرت رجالي", price: 150, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt" },
-      { name: "فستان صيفي", price: 300, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress" },
-      { name: "هودي شتوي", price: 250, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie" },
-      { name: "حذاء رياضي", price: 400, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes" },
-      { name: "تيشيرت كاجوال", price: 180, category: "T-Shirt", img: "https://via.placeholder.com/200x200?text=T-Shirt+2" },
-      { name: "فستان سهرة", price: 500, category: "Dress", img: "https://via.placeholder.com/200x200?text=Dress+2" },
-      { name: "هودي قطني", price: 270, category: "Hoodie", img: "https://via.placeholder.com/200x200?text=Hoodie+2" },
-      { name: "حذاء كلاسيك", price: 350, category: "Shoes", img: "https://via.placeholder.com/200x200?text=Shoes+2" }
+      { name: "off white T-shirt", price: 350, category: "T-Shirt", img: "./h.jpg" },
+      { name: "grey dress", price: 900, category: "Dress", img: "./olo.jpg" },
+      { name: "hoodie1", price: 550, category: "Hoodie", img: "./b.jpg" },
+      { name: "shoes1", price: 400, category: "Shoes", img: "./io.jpg" },
+      { name: "icon T-shirt", price: 350, category: "T-Shirt", img: "./hh.jpg" },
+      { name: "white dress", price: 1000, category: "Dress", img: "./pop.jpg" },
+      { name: "hoddie2", price: 570, category: "Hoodie", img: "./hh.jpg" },
+      { name: "shoes2", price: 350, category: "Shoes", img: "./ho.jpg" }
     ];
 
     const cart = [];
@@ -190,7 +191,7 @@
             <img src="${product.img}" alt="${product.name}" />
             <h3>${product.name}</h3>
             <p>${product.price} جنيه</p>
-            <button onclick='addToCart(${JSON.stringify(product)})'>اضف إلى السلة</button>
+            <button onclick='addToCart(${JSON.stringify(product)})'>add to cart</button>
           `;
           list.appendChild(el);
         });
@@ -240,7 +241,7 @@
 
     function checkout() {
       if (cart.length === 0) {
-        alert("السلة فارغة!");
+        alert("the cart ia empty!");
         return;
       }
 
