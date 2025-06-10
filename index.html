@@ -156,12 +156,13 @@
     <div class="total" id="cart-total">المجموع: 0 جنيه</div>
     <div class="cart-buttons">
       <button onclick="clearCart()">clear cart</button>
-  <button onclick="window.location.href='buy.html'">buy now</button>
+      <button type="button" onclick="goToBuyPage()">لbuy now</button>
+
     </div>
   </section>
 
   <!-- Hidden form to send cart to Formspree -->
-  <form id="order-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+  <form id="order-form" action="https://formspree.io/f/xeokjjwo" method="POST">
     <input type="hidden" name="cartDetails" id="cart-details" />
   </form>
 
@@ -258,6 +259,19 @@
     }
 
     displayProducts();
+    function goToBuyPage() {
+  if (cart.length === 0) {
+    alert("السلة فاضية");
+    return;
+  }
+
+  // خزن بيانات السلة
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  // انقل المستخدم لصفحة الشراء
+  window.location.href = "buy.html";
+}
+
   </script>
 </body>
 </html>
