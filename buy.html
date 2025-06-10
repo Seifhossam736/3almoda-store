@@ -149,12 +149,11 @@ width: 100%;
 
 <body>
 
+</head>
+<body>
+  <h2>صفحه الشراء:</h2>
+  <div id="cart-items"></div>
 
-  <h1>صفحه الشراء</h1>
-
- 
- <form action="https://formspree.io/f/xeokjjwo"
- method="POST">
  
    <input type="hidden" name="products" id="productList">
 
@@ -184,7 +183,22 @@ width: 100%;
   
 </form>
 
-  
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartDiv = document.getElementById("cart-items");
+
+    if (cart.length === 0) {
+      cartDiv.innerHTML = "<p>السلة فاضية</p>";
+    } else {
+      cart.forEach(item => {
+        const div = document.createElement("div");
+        div.className = "product";
+        div.textContent = `${item.name} ×${item.qty} = ${item.price * item.qty} جنيه`;
+        cartDiv.appendChild(div);
+      });
+    }
+  </script>
+
 
 <script>
 
