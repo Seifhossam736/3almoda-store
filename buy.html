@@ -1,177 +1,40 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
- 
-  <title>شراء المنتجات</title>
-  
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- 
-
-   background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    color: #333;
-  }
-
- 
-
- h1, h3 {
-    color: #444;
-    text-align: center;
-  }
-
-  .product {
-    background-
-
-color: #fff;
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px 
-
-rgba(0,0,0,0.1);
-    display: inline-block;
-    margin: 10px;
-    width: 180px;
-    
-
-text-align: center;
-    transition: transform 0.2s ease;
-  }
-
-  .product:hover {
-    
-
-transform: scale(1.03);
-  }
-
-  .product img {
-    width: 100%;
-    border-radius: 
-
-8px;
-  }
-
-  button {
-    background-color: #007bff;
-    color: white;
-    border: 
-
-none;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    
-
-margin-top: 10px;
-    transition: background-color 0.2s ease;
-  }
-
-  button:hover {
-  
-
-  background-color: #0056b3;
-  }
-
-  #cart {
-    background-color: #fff;
-    padding: 
-
-20px;
-    margin-top: 40px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px 
-
-rgba(0,0,0,0.1);
-  }
-
-  #cart img {
-    width: 80px;
-    border-radius: 6px;
-    
-
-margin: 5px;
-  }
-
-  form {
-    max-width: 400px;
-    margin: 30px auto;
-    
-
-background: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 2px 
-
-10px rgba(0,0,0,0.1);
-  }
-
-  input[type="text"],
-  input[type="email"] {
-    width: 
-
-100%;
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    border: 1px 
-
-solid #ccc;
-    font-size: 14px;
-  }
-
-  input[type="submit"],
-  form button {
-    
-
-width: 100%;
-    font-size: 16px;
-  }
-</style>
+  <title>شراء الآن</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { background: #f0f2f5; font-family: Arial; padding: 20px; }
+    .summary { background: #fff; padding: 15px; border-radius: 10px; white-space: pre-wrap; }
+    form { margin-top: 20px; }
+    input, textarea, button {
+      width: 100%; margin: 10px 0; padding: 10px; border-radius: 5px; border: 1px solid #ccc;
+    }
+    button {
+      background: #2c3e50; color: white; border: none; cursor: pointer;
+    }
+  </style>
 </head>
 <body>
+  <h2>تفاصيل الطلب:</h2>
+  <div class="summary" id="orderSummary">جار التحميل...</div>
 
-  <h2>المنتجات المختارة:</h2>
-  <div id="cart-items"></div>
-
-  <form id="order-form" action="https://formspree.io/f/xeokjjwo" method="POST">
-    <label for="name">الاسم:</label>
-    <input type="text" name="name" id="name" required>
-
-    <label for="phone">رقم الموبايل:</label>
-    <input type="tel" name="phone" id="phone" required>
-
-    <label for="address">عنوان الشحن:</label>
-    <textarea name="address" id="address" rows="3" required></textarea>
-
-    <input type="hidden" name="cartDetails" id="cart-details">
-
-    <button type="submit">إرسال الطلب</button>
+  <form action="https://formspree.io/f/xeokjjwo" method="POST">
+    <input type="text" name="name" placeholder="الاسم" required>
+    <input type="number" name="number" placeholder="رقم الهاتف" required>
+    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+    
+    <input type="text" name="name" placeholder="العنوان" required>
+    <textarea name="cartDetails" id="cartDetails" rows="6" readonly></textarea>
+    <button type="submit">تأكيد الطلب</button>
   </form>
 
   <script>
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-    const cartDiv = document.getElementById("cart-items");
-    const cartDetailsInput = document.getElementById("cart-details");
-
-    if (cart.length === 0) {
-      cartDiv.innerHTML = "<p>السلة فاضية</p>";
-    } else {
-      let cartText = "";
-      cart.forEach(item => {
-        const div = document.createElement("div");
-        div.className = "product";
-        div.textContent = `${item.name} ×${item.qty} = ${item.price * item.qty} جنيه`;
-        cartDiv.appendChild(div);
-
-        cartText += `${item.name} ×${item.qty} = ${item.price * item.qty} جنيه\n`;
-      });
-      cartDetailsInput.value = cartText;
-    }
+    const cartText = localStorage.getItem("cartDetails") || "لا توجد منتجات.";
+    document.getElementById("orderSummary").innerText = cartText;
+    document.getElementById("cartDetails").value = cartText;
   </script>
-
 </body>
 </html>
