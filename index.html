@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -5,19 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3almoda | متجر أونلاين</title>
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-      background-color: #f0f2f5;
-      color: #333;
-      padding: 20px;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+    body { background-color: #f0f2f5; color: #333; padding: 20px; }
     header {
       background-color: #2c3e50;
       padding: 20px;
@@ -27,21 +17,16 @@
       top: 0;
       z-index: 1000;
     }
-
-    header h1 {
-      font-size: 2rem;
+    .top-links { margin-top: 10px; }
+    .top-links button {
+      margin: 0 5px;
+      background: #34495e;
+      color: #fff;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    .top-links {
-      margin-top: 10px;
-    }
-
-    .top-links a {
-      margin: 0 10px;
-      color: #ecf0f1;
-      text-decoration: none;
-    }
-
     nav {
       display: flex;
       justify-content: center;
@@ -49,7 +34,6 @@
       gap: 10px;
       margin: 15px 0;
     }
-
     nav button {
       background-color: #ecf0f1;
       border: 1px solid #ccc;
@@ -57,18 +41,15 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
     nav button.active {
       background-color: #2c3e50;
       color: white;
     }
-
     .products {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
       gap: 20px;
     }
-
     .product {
       background: white;
       padding: 15px;
@@ -76,44 +57,33 @@
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       text-align: center;
     }
-
     .product img {
       max-width: 100%;
       border-radius: 10px;
     }
-
-    .product h3 {
-      margin: 10px 0 5px;
+    .product h3 { margin: 10px 0 5px; }
+    .product p { margin: 0 0 10px; }
+    .product button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    .product p {
-      margin: 0 0 10px;
-    }
-
     .cart {
       margin-top: 30px;
       background: #fff;
       padding: 15px;
       border-radius: 10px;
     }
-
     .cart-item {
       display: flex;
       justify-content: space-between;
       margin-bottom: 10px;
     }
-
-    .total {
-      font-weight: bold;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .cart-buttons {
-      text-align: center;
-      margin-top: 15px;
-    }
-
+    .total { font-weight: bold; text-align: center; margin-top: 10px; }
+    .cart-buttons { text-align: center; margin-top: 15px; }
     .cart-buttons button {
       background-color: #2c3e50;
       color: white;
@@ -123,58 +93,56 @@
       border-radius: 5px;
       cursor: pointer;
     }
-
     @media (max-width: 600px) {
-      nav button {
-        flex: 1 1 40%;
-      }
+      .products { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>🛍️3almoda</h1>
+    <h1>🛍️ 3almoda</h1>
     <div class="top-links">
-  <button onclick="window.location.href='add-product.html'">add your product</button>
-  
-  <button onclick="window.location.href='about.html'">who was us</button>
+      <button onclick="location.href='add-product.html'">اضف منتجك</button>
+      <button onclick="location.href='about.html'">من نحن</button>
     </div>
     <nav>
-      <button onclick="filterProducts('all', this)" class="active">all</button>
-      <button onclick="filterProducts('T-Shirt', this)">T-shirts</button>
-      <button onclick="filterProducts('Dress', this)">dress</button>
-      <button onclick="filterProducts('Hoodie', this)">hoodies</button>
-      <button onclick="filterProducts('Shoes', this)">shoes</button>
+      <button onclick="filterProducts('all', this)" class="active">الكل</button>
+      <button onclick="filterProducts('T-Shirt', this)">تيشيرت</button>
+      <button onclick="filterProducts('Dress', this)">فساتين</button>
+      <button onclick="filterProducts('Hoodie', this)">هودي</button>
+      <button onclick="filterProducts('Shoes', this)">أحذية</button>
     </nav>
   </header>
 
   <section class="products" id="product-list"></section>
 
   <section class="cart" id="cart">
-    <h2>🛒 cart</h2>
+    <h2>🛒 السلة</h2>
     <div id="cart-items"></div>
-    <div class="total" id="cart-total">المجموع: 0 جنيه</div>
+    <div class="total" id="cart-total">الإجمالي: 0 LE</div>
     <div class="cart-buttons">
-      <button onclick="clearCart()">clear cart</button>
-  <button onclick="window.location.href='buy.html'">buy now</button>
+      <button onclick="clearCart()">افرغ السلة</button>
+      <button onclick="goToBuyPage()">اشترِ الآن</button>
     </div>
   </section>
 
-  <!-- Hidden form to send cart to Formspree -->
-  <form id="order-form" action="https://formspree.io/f/xeokjjwo" method="POST">
-    <input type="hidden" name="cartDetails" id="cart-details" />
-  </form>
-
   <script>
     const products = [
-      { name: "off white T-shirt", price: 350, category: "T-Shirt", img: "./h.jpg" },
-      { name: "grey dress", price: 900, category: "Dress", img: "./olo.jpg" },
-      { name: "hoodie1", price: 550, category: "Hoodie", img: "./b.jpg" },
-      { name: "shoes1", price: 400, category: "Shoes", img: "./io.jpg" },
-      { name: "icon T-shirt", price: 350, category: "T-Shirt", img: "./hh.jpg" },
-      { name: "white dress", price: 1000, category: "Dress", img: "./pop.jpg" },
-      { name: "hoddie2", price: 570, category: "Hoodie", img: "./hh.jpg" },
-      { name: "shoes2", price: 350, category: "Shoes", img: "./ho.jpg" }
+      { name: "off white T-shirt", price: 350, category: "T-Shirt", img: "h.jpg" },
+      { name: "wing T-shirt", price: 350, category: "T-Shirt", img: "hhh.jpg" },
+      { name: "traple A T-shirt", price: 350, category: "T-Shirt", img: "hhhh.jpg" },
+      { name: "grey dress", price: 900, category: "Dress", img: "olo.jpg" },
+      { name: "hoodie1", price: 550, category: "Hoodie", img: "b.jpg" },
+      { name: "shoes1", price: 400, category: "Shoes", img: "io.jpg" },
+      { name: "shoes3", price: 410, category: "Shoes", img: "iuu.jpg" },
+      { name: "icon T-shirt", price: 350, category: "T-Shirt", img: "hh.jpg" },
+      { name: "white dress", price: 1000, category: "Dress", img: "pop.jpg" },
+      { name: "white dress2", price: 1100, category: "Dress", img: "ppo.jpg" },
+      { name: "hoddie2", price: 570, category: "Hoodie", img: "bb.jpg" },
+      { name: "hoddie3", price: 510, category: "Hoodie", img: "bbb.jpg" },
+      { name: "hoddie4", price: 500, category: "Hoodie", img: "bbbb.jpg" },
+      { name: "hoddie5", price: 540, category: "Hoodie", img: "bbbbb.jpg" },
+      { name: "shoes2", price: 350, category: "Shoes", img: "ho.jpg" }
     ];
 
     const cart = [];
@@ -182,28 +150,23 @@
     function displayProducts(filter = 'all') {
       const list = document.getElementById('product-list');
       list.innerHTML = '';
-      products
-        .filter(p => filter === 'all' || p.category === filter)
-        .forEach((product) => {
-          const el = document.createElement('div');
-          el.className = 'product';
-          el.innerHTML = `
-            <img src="${product.img}" alt="${product.name}" />
-            <h3>${product.name}</h3>
-            <p>${product.price} جنيه</p>
-            <button onclick='addToCart(${JSON.stringify(product)})'>add to cart</button>
-          `;
-          list.appendChild(el);
-        });
+      products.filter(p => filter === 'all' || p.category === filter).forEach((product) => {
+        const el = document.createElement('div');
+        el.className = 'product';
+        el.innerHTML = `
+          <img src="${product.img}" alt="${product.name}" />
+          <h3>${product.name}</h3>
+          <p>${product.price} LE</p>
+          <button onclick='addToCart(${JSON.stringify(product)})'>أضف إلى السلة</button>
+        `;
+        list.appendChild(el);
+      });
     }
 
     function addToCart(product) {
       const existing = cart.find(p => p.name === product.name);
-      if (existing) {
-        existing.qty++;
-      } else {
-        cart.push({ ...product, qty: 1 });
-      }
+      if (existing) existing.qty++;
+      else cart.push({ ...product, qty: 1 });
       updateCart();
     }
 
@@ -212,21 +175,17 @@
       const total = document.getElementById('cart-total');
       cartItems.innerHTML = '';
       let sum = 0;
-
       cart.forEach((item, i) => {
         const el = document.createElement('div');
         el.className = 'cart-item';
         el.innerHTML = `
-          <span>${item.name} x${item.qty}</span>
-          <span>
-            ${item.price * item.qty} جنيه
-            <button onclick="removeItem(${i})">❌</button>
-          </span>
+          <span>${item.name} ×${item.qty}</span>
+          <span>${item.price * item.qty} LE <button onclick="removeItem(${i})">❌</button></span>
         `;
         cartItems.appendChild(el);
         sum += item.price * item.qty;
       });
-      total.innerText = `المجموع: ${sum} جنيه`;
+      total.innerText = `الإجمالي: ${sum} LE`;
     }
 
     function removeItem(i) {
@@ -239,16 +198,11 @@
       updateCart();
     }
 
-    function checkout() {
-      if (cart.length === 0) {
-        alert("the cart ia empty!");
-        return;
-      }
-
-      const cartSummary = cart.map(item => `${item.name} ×${item.qty} = ${item.price * item.qty} جنيه`).join('\n');
-      document.getElementById("cart-details").value = cartSummary;
-
-      document.getElementById("order-form").submit();
+    function goToBuyPage() {
+      if (cart.length === 0) return alert("السلة فارغة!");
+      const summary = cart.map(item => `${item.name} ×${item.qty} = ${item.price * item.qty} LE`).join('\n');
+      localStorage.setItem("cartDetails", summary);
+      window.location.href = "buy.html";
     }
 
     function filterProducts(cat, btn) {
@@ -261,4 +215,3 @@
   </script>
 </body>
 </html>
-
