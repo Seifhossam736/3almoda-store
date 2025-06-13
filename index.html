@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>3almoda | متجر أونلاين</title>
+  <link rel="icon" href="./logo.png" type="image/png">
+
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
     body { background-color: #f0f2f5; color: #333; padding: 20px; }
@@ -96,6 +98,20 @@
     @media (max-width: 600px) {
       .products { grid-template-columns: repeat(2, 1fr); }
     }
+    #notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #27ae60;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  z-index: 9999;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
   </style>
 </head>
 <body>
@@ -125,6 +141,7 @@
       <button onclick="goToBuyPage()">اشترِ الآن</button>
     </div>
   </section>
+<div id="notification" style="display:none;"></div>
 
   <script>
     const products = [
@@ -168,6 +185,8 @@
       if (existing) existing.qty++;
       else cart.push({ ...product, qty: 1 });
       updateCart();
+      showNotification(`${product.name} تم إضافته إلى السلة ✅`);
+
     }
 
     function updateCart() {
@@ -212,6 +231,16 @@
     }
 
     displayProducts();
+    function showNotification(message) {
+  const note = document.getElementById('notification');
+  note.textContent = message;
+  note.style.display = 'block';
+  
+  setTimeout(() => {
+    note.style.display = 'none';
+  }, 2000); // التنبيه يختفي بعد ثانيتين
+}
+
   </script>
 </body>
 </html>
